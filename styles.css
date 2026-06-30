@@ -195,7 +195,7 @@ h1,
 h2,
 h3,
 p {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 h1,
@@ -308,7 +308,8 @@ h3 {
 #servicios,
 #trabajos,
 #experiencia,
-#reservas {
+#reservas,
+#ubicacion {
   scroll-margin-top: 96px;
 }
 
@@ -597,6 +598,55 @@ textarea::placeholder {
   font-size: 0.9rem;
 }
 
+.location {
+  border-top: 1px solid rgba(8, 9, 10, 0.1);
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1fr);
+  gap: clamp(26px, 5vw, 62px);
+  align-items: center;
+}
+
+.location .section-kicker {
+  color: var(--red);
+}
+
+.location h2 {
+  font-size: clamp(2rem, 4.2vw, 3.35rem);
+}
+
+.location-copy p {
+  margin: 18px 0 0;
+  color: rgba(8, 9, 10, 0.72);
+  font-size: 1.05rem;
+}
+
+.location-link {
+  width: fit-content;
+  margin-top: 28px;
+  border-color: rgba(8, 9, 10, 0.28);
+  color: var(--ink);
+  background: transparent;
+}
+
+.map-frame {
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid rgba(8, 9, 10, 0.14);
+  box-shadow: var(--shadow);
+  background: rgba(8, 9, 10, 0.08);
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
+}
+
 .floating-action {
   position: fixed;
   right: 18px;
@@ -660,7 +710,8 @@ textarea::placeholder {
   #servicios,
   #trabajos,
   #experiencia,
-  #reservas {
+  #reservas,
+  #ubicacion {
     scroll-margin-top: 148px;
   }
 
@@ -685,7 +736,8 @@ textarea::placeholder {
   .section-heading,
   .gallery-heading,
   .studio-grid,
-  .booking-grid {
+  .booking-grid,
+  .location-grid {
     grid-template-columns: 1fr;
   }
 
@@ -708,6 +760,11 @@ textarea::placeholder {
   .studio-media {
     min-height: 480px;
   }
+
+  .map-frame,
+  .map-frame iframe {
+    min-height: 360px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -716,8 +773,18 @@ textarea::placeholder {
   }
 
   .main-nav {
-    gap: 14px;
-    font-size: 0.86rem;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    overflow-x: visible;
+    font-size: 0.8rem;
+  }
+
+  .main-nav a {
+    min-height: 34px;
+  }
+
+  .nav-action {
+    padding: 0 10px;
   }
 
   .hero {
@@ -759,6 +826,15 @@ textarea::placeholder {
 
   .studio-media {
     min-height: 420px;
+  }
+
+  .location-link {
+    width: 100%;
+  }
+
+  .map-frame,
+  .map-frame iframe {
+    min-height: 320px;
   }
 
   .floating-action {
