@@ -5,6 +5,7 @@ const header = document.querySelector("#siteHeader");
 const form = document.querySelector("#bookingForm");
 const bookingSection = document.querySelector("#reservas");
 const serviceSelect = document.querySelector("#service");
+const barberSelect = document.querySelector("#barber");
 const dateInput = document.querySelector("#date");
 const note = document.querySelector("#bookingNote");
 const floatingAction = document.querySelector("#floatingWhatsapp");
@@ -33,11 +34,12 @@ function todayIso() {
 function buildMessage(values = {}) {
   const name = values.name || "mi nombre";
   const service = values.service || "un corte";
+  const barber = values.barber ? `\nBarbero preferido: ${values.barber}` : "";
   const date = values.date ? `\nDía preferido: ${values.date}` : "";
   const time = values.time ? `\nHora preferida: ${values.time}` : "";
   const details = values.details ? `\nDetalle: ${values.details}` : "";
 
-  return `Hola ${BUSINESS_NAME}, quiero reservar.\nNombre: ${name}\nServicio: ${service}${date}${time}${details}`;
+  return `Hola ${BUSINESS_NAME}, quiero reservar.\nNombre: ${name}\nServicio: ${service}${barber}${date}${time}${details}`;
 }
 
 function whatsappUrl(message) {
@@ -50,6 +52,7 @@ function currentFormValues() {
   return {
     name: document.querySelector("#clientName").value.trim(),
     service: serviceSelect.value,
+    barber: barberSelect.value,
     date: dateInput.value,
     time: document.querySelector("#time").value,
     details: document.querySelector("#details").value.trim()
@@ -97,6 +100,7 @@ window.addEventListener("scroll", setHeaderState, { passive: true });
 document.addEventListener("click", handleServicePick);
 form.addEventListener("submit", handleSubmit);
 serviceSelect.addEventListener("change", updateDirectLinks);
+barberSelect.addEventListener("change", updateDirectLinks);
 
 dateInput.min = todayIso();
 setHeaderState();
